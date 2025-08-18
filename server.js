@@ -1,46 +1,25 @@
-const http = require("http"); 
-const fs = require("fs");
+const express = require('express');
 
-const server = http.createServer((req,res) =>{
-    console.log(req.url,req.method)
-    
-    res.setHeader("Content-Type", "text/html");
-//sendiing a html file id like to read
-  // routing
-    let path = './pages/';
-    switch(req.url) {
-    case '/':
-      path += '/index.html';
-      res.statusCode = 200;
-      break;
-    case '/aboutme':
-      path += 'aboutme.html';
-      res.statusCode = 200;
-      break;
-    case '/about-us':
-      res.statusCode = 301;
-      res.setHeader('Location', '/aboutme');
-      res.end();
-      break;
-    default:
-      path += '404.html';
-      res.statusCode = 404;
-  }
+// express app
+const app = express();
 
-    fs.readFile(path,(err,data)=>{
-    if (err){
-        console.log(err);
-        res.end();
+// listen for requests
+app.listen(3000);
 
-        }
-    else{
-        res.end(data);
-    }
-})
+app.get('/', (req, res) => { //directs to index page. Makes sure path is always the say from current wd
+  res.sendFile('./pages/index.html', { root: __dirname });
 });
 
+app.get('/aboutme', (req, res) => {
+  res.sendFile('./pages/aboutme.html', { root: __dirname });
+});
 
+// redirects
+app.get('/about-us', (req, res) => {
+  res.redirect('/about');
+});
 
-server.listen(3000,"localhost",()=>{
-    console.log("Listening for requests on port 3000")
+// 404 page
+app.use((req, res) => {
+  res.status(404).sendFile('./views/404.html', { root: __dirname });
 });

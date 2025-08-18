@@ -1,0 +1,24 @@
+{
+  "name": "blog-app",
+  "version": "1.0.0",
+  "description": "A minimalist blogging platform built with **Node.js**, **Express**, **MongoDB**, and **vanilla HTML/CSS** — designed for solo blogging and public engagement through comments.\r Will prepare me for my final year project in advanced web development.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unyime101/Blog-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unyime101/Blog-App/issues"
+  },
+  "homepage": "https://github.com/unyime101/Blog-App#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "lodash": "^4.17.21"
+  }
+}
