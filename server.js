@@ -10,7 +10,12 @@ app.set("views","pages");
 app.listen(3000);
 
 app.get("/", (req, res) => { //directs to index page. Makes sure path is always the say from current wd
-    res.render("index",{title: "home"});
+    const blogs = [{title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+    {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+    {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+  ];
+    
+    res.render("index",{title: "home", blogs});
 });
 
 app.get("/aboutme", (req, res) => {

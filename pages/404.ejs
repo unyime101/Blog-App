@@ -1,11 +1,13 @@
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unyime101 | <%= title %></title>
-</head>
+<%- include("./partials/head.ejs") %>
+
 <body>
-  <h1>404 - Oh no!</h1>
-  <h2>That page does not exist</h2>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="not-found content">
+    Oh no, page not found :)
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
 </body>
 </html>

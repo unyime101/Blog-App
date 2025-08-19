@@ -1,15 +1,14 @@
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unyime101 | <%= title %></title>
-</head>
+<%- include("./partials/head.ejs") %>
+
 <body>
-  <h1>Hellooo, this ais all aboue me</h1>
-  <h2>Blah blah Bblah</h2>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/aboutme"> About Me page</a>
-  </nav>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="about content">
+    <h2>About the Kid</h2>
+    <p>I'm on an exciting path into the tech world, currently building my skills through hands-on projects and continuous learning. I’m always eager to pick up new tools, experiment with ideas and grow with every challenge. Keep up with this page to see what I’m up to—and if you’ve got any advice or support to share, it’s always welcome!</p>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
 </body>
 </html>
