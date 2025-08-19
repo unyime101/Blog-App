@@ -26,14 +26,14 @@ This app is designed to deepen my understanding of:
 
 | Area                         | Status        | Notes                                             |
 |------------------------------|---------------|---------------------------------------------------|
-| Node.js project setup        | 🚧 In Progress| Initialized with `npm init`                       |
-| Express server               | 🚧 In Progress| Routes, middleware, error handling setup          |
+| Node.js project setup        | ✅Completed	  | Initialized with `npm init`                       |
+| Express server               | ✅Completed	| Routes, middleware, error handling setup          |
 | MongoDB connection           | 🔜 Planned    | Using Mongoose + MongoDB Atlas                    |
 | Blog post schema             | 🔜 Planned    | Includes title, body, timestamps                  |
 | Comment system               | 🔜 Planned    | Each post has nested comments                     |
 | Routes for blog CRUD         | 🔜 Planned    | Owner-only protected routes                       |
 | Comment route (public)       | 🔜 Planned    | Users can comment without logging in              |
-| Static HTML/CSS UI           | 🔜 Planned    | Clean responsive design, no frameworks            |
+| Static HTML/CSS UI           | ✅Completed   | Clean responsive design, no frameworks            |
 | Azure deployment             | 🔜 Planned    | Hosting with GitHub Actions + App Service         |
 | k3s Raspberry Pi deployment  | 🔜 Planned    | Will self-host on Pi 5 cluster                    |
 | Authentication (admin-only)  | 🔜 Planned    | Simple admin login to protect CRUD routes         |
