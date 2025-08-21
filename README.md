@@ -27,9 +27,9 @@ This app is designed to deepen my understanding of:
 | Area                         | Status        | Notes                                             |
 |------------------------------|---------------|---------------------------------------------------|
 | Node.js project setup        | ✅Completed	  | Initialized with `npm init`                       |
-| Express server               | ✅Completed	| Routes, middleware, error handling setup          |
-| MongoDB connection           | 🔜 Planned    | Using Mongoose + MongoDB Atlas                    |
-| Blog post schema             | 🔜 Planned    | Includes title, body, timestamps                  |
+| Express server               | ✅Completed	  | Routes, middleware, error handling setup          |
+| MongoDB connection           | 🚧 In Progress| Using Mongoose + MongoDB Atlas/ Maybe Azure       |
+| Blog post schema             | 🚧 In Progress| Includes title, body, timestamps                  |
 | Comment system               | 🔜 Planned    | Each post has nested comments                     |
 | Routes for blog CRUD         | 🔜 Planned    | Owner-only protected routes                       |
 | Comment route (public)       | 🔜 Planned    | Users can comment without logging in              |
