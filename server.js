@@ -69,6 +69,17 @@ app.post('/blogs', (req, res) => {
       console.log(err);
     });
 });
+//displaying each blog
+app.get('/blogs/:id', (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then(result => {
+      res.render('details', { blog: result, title: 'Blog Details' });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 //retrieves all blogs
 app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
   Blog.find().sort({ createdAt: -1 })
