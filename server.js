@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config(); // for my secret files shh
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const Blog = require('./modules/blog');
 // express app
 const app = express();
 //connection string for mongodb stored in .env
@@ -20,16 +21,30 @@ app.set("views","pages");
 //using morgan to log things and middlewares to load stles
 app.use(morgan("dev")); //logs working
 app.use(express.static("public"));
-// listen for requests
+app.use((req, res, next) => {
+  res.locals.path = req.path;
+  next();
+});
 
+// mongoose & mongo tests
+app.get('/add-blog', (req, res) => {
+  const blog = new Blog({
+    title: 'Second blog',
+    snippet: 'about my new blog',
+    body: 'more about my new blog'
+  })
 
-app.get("/", (req, res) => { //directs to index page. Makes sure path is always the say from current wd
-    const blogs = [{title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-  ];
-    
-    res.render("index",{title: "home", blogs});
+  blog.save()
+    .then(result => {
+      res.send(result);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.get('/', (req, res) => {
+  res.redirect('/blogs');
 });
 
 app.get("/aboutme", (req, res) => {
@@ -37,8 +52,20 @@ app.get("/aboutme", (req, res) => {
 });
 
 app.get("/create", (req, res)=>{
-    res.render("create", {title:"Create New post"});
-})
+    res.render("create", {title:"New Blog"});
+});
+
+//retrieves all blogs
+app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
+  Blog.find().sort({ createdAt: -1 })
+    .then(result => {
+      res.render('index', { blogs: result, title: 'All blogs' });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 
 // 404 page
 app.use((req, res) => { //assumes error code. checks if the status is 404. shows the rror page
