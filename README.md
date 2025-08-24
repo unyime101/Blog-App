@@ -28,11 +28,11 @@ This app is designed to deepen my understanding of:
 |------------------------------|---------------|---------------------------------------------------|
 | Node.js project setup        | ✅Completed	  | Initialized with `npm init`                       |
 | Express server               | ✅Completed	  | Routes, middleware, error handling setup          |
-| MongoDB connection           | 🚧 In Progress| Using Mongoose + MongoDB Atlas/ Maybe Azure       |
-| Blog post schema             | 🚧 In Progress| Includes title, body, timestamps                  |
-| Comment system               | 🔜 Planned    | Each post has nested comments                     |
-| Routes for blog CRUD         | 🔜 Planned    | Owner-only protected routes                       |
-| Comment route (public)       | 🔜 Planned    | Users can comment without logging in              |
+| MongoDB connection           | ✅Completed   | Using Mongoose + MongoDB Atlas/ Maybe Azure       |
+| Blog post schema             | ✅Completed   | Includes title, body, timestamps                  |
+| Comment system               | 🚧 In Progress| Each post has nested comments                     |
+| Routes for blog CRUD         | 🚧 In Progress| Owner-only protected routes                       |
+| Comment route (public)       | 🚧 In Progress| Users can comment without logging in              |
 | Static HTML/CSS UI           | ✅Completed   | Clean responsive design, no frameworks            |
 | Azure deployment             | 🔜 Planned    | Hosting with GitHub Actions + App Service         |
 | k3s Raspberry Pi deployment  | 🔜 Planned    | Will self-host on Pi 5 cluster                    |
@@ -43,13 +43,13 @@ This app is designed to deepen my understanding of:
 
 ## 📦 Features
 
-🚧 Only I can create/edit/delete blogs  
-🚧 View all blog posts on homepage  
+✅ Only I can create/edit/delete blogs  
+✅ View all blog posts on homepage  
 🚧 Comment on individual blog posts (public)  
 🚧 MongoDB-powered post + comment storage  
-🚧 Basic HTML/CSS interface  
-🚧 Error handling for invalid pages/routes  
-🚧 Modular folder structure for scalability  
+✅ Basic HTML/CSS interface  
+✅ Error handling for invalid pages/routes  
+✅ Modular folder structure for scalability  
 🚧 Planned: Admin login to protect post management routes  
 🚧 Deployable on cloud or Raspberry Pi
 

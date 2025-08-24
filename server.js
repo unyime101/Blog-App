@@ -21,27 +21,28 @@ app.set("views","pages");
 //using morgan to log things and middlewares to load stles
 app.use(morgan("dev")); //logs working
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.locals.path = req.path;
   next();
 });
 
 // mongoose & mongo tests
-app.get('/add-blog', (req, res) => {
-  const blog = new Blog({
-    title: 'Second blog',
-    snippet: 'about my new blog',
-    body: 'more about my new blog'
-  })
+// app.get('/add-blog', (req, res) => {
+//   const blog = new Blog({
+//     title: 'Second blog',
+//     snippet: 'about my new blog',
+//     body: 'more about my new blog'
+//   })
 
-  blog.save()
-    .then(result => {
-      res.send(result);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
+//   blog.save()
+//     .then(result => {
+//       res.send(result);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
 app.get('/', (req, res) => {
   res.redirect('/blogs');
@@ -55,6 +56,19 @@ app.get("/create", (req, res)=>{
     res.render("create", {title:"New Blog"});
 });
 
+//adds the new blogs
+app.post('/blogs', (req, res) => {
+  // console.log(req.body);
+  const blog = new Blog(req.body);
+
+  blog.save()
+    .then(result => {
+      res.redirect('/blogs');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 //retrieves all blogs
 app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
   Blog.find().sort({ createdAt: -1 })
@@ -65,6 +79,7 @@ app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
       console.log(err);
     });
 });
+app.post
 
 
 // 404 page
