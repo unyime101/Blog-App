@@ -2,7 +2,9 @@ const express = require("express");
 require("dotenv").config(); // for my secret files shh
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const Blog = require('./modules/blog');
+const Blog = require("./modules/blog");
+const login = require("./modules/login");
+const bcrypt = require("bcrypt");
 // express app
 const app = express();
 //connection string for mongodb stored in .env
@@ -55,6 +57,13 @@ app.get("/aboutme", (req, res) => {
 app.get("/create", (req, res)=>{
     res.render("create", {title:"New Blog"});
 });
+app.get("/login", (req, res)=>{
+    res.render("login", {title:"Login!"});
+});
+app.get("/signup", (req, res)=>{
+    res.render("signup", {title:"SignUp!"});
+});
+
 
 //adds the new blogs
 app.post('/blogs', (req, res) => {
@@ -90,7 +99,6 @@ app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
       console.log(err);
     });
 });
-app.post
 
 
 // 404 page

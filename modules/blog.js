@@ -16,7 +16,7 @@ const blogSchema = new Schema({
   },
 }, { timestamps: true });
 
-const Blog = mongoose.model('unyime101Blog', blogSchema);
+const Blog = mongoose.model('currentBlogs', blogSchema);
 module.exports = Blog;
 
 
