@@ -31,7 +31,7 @@ This app is designed to deepen my understanding of:
 | MongoDB connection           | ✅Completed   | Using Mongoose + MongoDB Atlas/ Maybe Azure       |
 | Blog post schema             | ✅Completed   | Includes title, body, timestamps                  |
 | Comment system               | 🚧 In Progress| Each post has nested comments                     |
-| Routes for blog CRUD         | 🚧 In Progress| Owner-only protected routes                       |
+| Routes for blog CRUD         | ✅Completed   | Owner-only protected routes                       |
 | Comment route (public)       | 🚧 In Progress| Users can comment without logging in              |
 | Static HTML/CSS UI           | ✅Completed   | Clean responsive design, no frameworks            |
 | Azure deployment             | 🔜 Planned    | Hosting with GitHub Actions + App Service         |
@@ -50,14 +50,14 @@ This app is designed to deepen my understanding of:
 ✅ Basic HTML/CSS interface  
 ✅ Error handling for invalid pages/routes  
 ✅ Modular folder structure for scalability  
-🚧 Planned: Admin login to protect post management routes  
+✅ Planned: Admin login to protect post management routes  
 🚧 Deployable on cloud or Raspberry Pi
 
 ---
 
 ## 🧠 Learning Goals
 
-- Strengthen full-stack development with **Node.js + MongoDB**
+- Strengthen full-stack development with **Node.js + MongoDB** resources: https://youtu.be/bxsemcrY4gQ?si=f7ItAsfywfSGOY20 &&https://youtu.be/O5kh3sTVSvA?si=qFOCde7IncIvzU4k && https://www.w3schools.com/js/default.asp
 - Understand cloud deployment pipelines using **Azure**
 - Explore **self-hosting and container orchestration** using Raspberry Pi + k3s
 - Improve front-end layout without relying on libraries

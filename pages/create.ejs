@@ -1,21 +1,33 @@
 <html lang="en">
-<%- include("./partials/head.ejs") %>
+  <%- include("./partials/head.ejs") %>
 
-<body>
-  <%- include("./partials/nav.ejs") %>
+  <body>
+    <%- include("./partials/nav2.ejs") %>
 
-  <div class="create-blog content">
-    <form action="/blogs" method="POST">
-      <label for="title">Blog title:</label>
-      <input type="text" id="title" name="title" required>
-      <label for="snippet">Blog snippet:</label>
-      <input type="text" id="snippet" name="snippet" required>
-      <label for="body">Blog body:</label>
-      <textarea id="body" name="body" required></textarea>
-      <button>Submit</button>
-    </form>
-  </div>
+    <div class="create-blog content">
+      <form action="/blogs" method="POST">
+        <label for="title">Blog title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="snippet">Blog snippet:</label>
+        <input type="text" id="snippet" name="snippet" required>
+        <label for="body">Blog body:</label>
+        <textarea id="body" name="body" required></textarea>
+        <div class="form-buttons">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
 
-  <%- include("./partials/footer.ejs") %>
-</body>
+      <form action="/delete" method="GET">
+        <button type="submit" class="btn-red">Delete Post.</button>
+      </form>
+    </div>
+
+    <% if (typeof alertMessage !== "undefined" && alertMessage) { %>
+      <script>
+        alert("<%= alertMessage %>");
+      </script>
+    <% } %>
+
+    <%- include("./partials/footer.ejs") %>
+  </body>
 </html>

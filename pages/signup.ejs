@@ -1,0 +1,25 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="auth-form content">
+    <form action="/signup" method="POST" class="auth-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <button type="submit">Log</button>
+    </form>
+    <p class="auth-extra">
+        Great to have you! </p>
+ </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
+
+
+

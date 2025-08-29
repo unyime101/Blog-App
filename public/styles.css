@@ -38,7 +38,13 @@ nav h1 {
   font-weight: 700;
   color: #111;
 }
+not-found content{
+    color: #555;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: color 0.2s ease;
 
+}
 nav ul {
   display: flex;
   gap: 20px;
@@ -145,6 +151,7 @@ h3 {
   font-family: inherit;
 }
 
+
 textarea {
   height: 120px;
   resize: vertical;
@@ -164,7 +171,14 @@ textarea {
 .create-blog button:hover {
   background: #333;
 }
+.create-blog button.btn-red {
+  background: red;
+  color: white;
+}
 
+.create-blog button.btn-red:hover {
+  background: darkred;
+}
 /* Footer */
 footer {
   color: #777;
@@ -182,4 +196,53 @@ footer a {
 
 footer a:hover {
   color: #000;
+}
+
+.auth-form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form label {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.auth-form input {
+  padding: 8px;
+  margin-top: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.auth-form button {
+  margin-top: 20px;
+  background: black;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.auth-form button:hover {
+  background: #333;
+}
+
+.auth-extra {
+  margin-top: 30px;   
+  text-align: center;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.auth-extra a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.auth-extra a:hover {
+  color: #333;
 }
