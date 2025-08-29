@@ -151,6 +151,7 @@ h3 {
   font-family: inherit;
 }
 
+
 textarea {
   height: 120px;
   resize: vertical;
@@ -170,7 +171,14 @@ textarea {
 .create-blog button:hover {
   background: #333;
 }
+.create-blog button.btn-red {
+  background: red;
+  color: white;
+}
 
+.create-blog button.btn-red:hover {
+  background: darkred;
+}
 /* Footer */
 footer {
   color: #777;

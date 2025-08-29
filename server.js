@@ -4,7 +4,9 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const Blog = require("./modules/blog");
 const usrlogin = require("./modules/usrlogin");
+const emaillist = require("./modules/emaillist")
 const bcrypt = require("bcrypt");
+let logged_in = 0;
 // express app
 const app = express();
 //connection string for mongodb stored in .env
@@ -54,47 +56,55 @@ app.get("/aboutme", (req, res) => {
   res.render("aboutme",{title:"About Me"});
 });
 
-app.get("/create", (req, res)=>{
-    res.render("create", {title:"New Blog"});
-});
+
 app.get("/login", (req, res)=>{
     res.render("login", {title:"Login!"});
+});
+
+
+// Login user 
+app.post("/login", async (req, res) => {
+    try {
+        const check = await usrlogin.findOne({ name: req.body.username });
+        if (!check) {
+            res.send("<script> alert('Account does not exist.'); window.location.href = '/login'; </script>")
+        }
+        // Compare the hashed password from the database with the plaintext password
+        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+        if (!isPasswordMatch) {
+            res.send("<script> alert('Account does not exist.'); window.location.href = '/login'; </script>")        }
+        else {
+            res.render("create",{title:"Create!"});
+            logged_in = 1;
+        }
+    }
+    catch {
+        window.alert("Error logging in.");
+    }
 });
 app.get("/signup", (req, res)=>{
     res.render("signup", {title:"SignUp!"});
 });
 
-// Register User
+// Register User for email notifications later!
 app.post("/signup", async (req, res) => {
     
     try {
         const data = {
             name: req.body.username,
-            email: req.body.email,
-            password: req.body.password
-        
+            email: req.body.email,        
         };
             //return res.send(data); checking the state of the data :)
-        // Check if the username already exists in the database
-        const existingUser = await usrlogin.findOne({ name: data.name });
-        const existingEmail = await usrlogin.findOne({ email: data.email });
+        // Check if the emails already exists in the database
+        const existingEmail = await emaillist.findOne({ email: data.email });
 
-        if (existingUser) {
-            return res.send("User already exists. Please choose a different username.");
-        }
         if (existingEmail) {
-            return res.send("This email address is already being used.");
+            res.send("<script> alert('Email address already being used. Please enter another.'); window.location.href = '/signup'; </script>")
         }
-
-        // Hash the password using bcrypt
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(data.password, saltRounds);
-
         // Create a new user instance
-        const newUser = new usrlogin({
+        const newUser = new emaillist({
             name: data.name,
             email: data.email,
-            password: hashedPassword
         });
        // return res.send(newUser); checking user state
 
@@ -110,28 +120,6 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-// Login user 
-app.post("/login", async (req, res) => {
-    try {
-        const check = await usrlogin.findOne({ name: req.body.username });
-        if (!check) {
-            res.send("User name cannot found")
-        }
-        // Compare the hashed password from the database with the plaintext password
-        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if (!isPasswordMatch) {
-            res.send("wrong Password");
-        }
-        else {
-            console.log("Sign in succeseful")
-            res.redirect("/blogs");
-        }
-    }
-    catch {
-        res.send("Error logging in.");
-    }
-});
-
 //adds the new blogs
 app.post('/blogs', (req, res) => {
   // console.log(req.body);
@@ -139,7 +127,7 @@ app.post('/blogs', (req, res) => {
 
   blog.save()
     .then(result => {
-      res.redirect('/blogs');
+        res.render("create", { alertMessage: "Blog created!", title:"Create!" });   
     })
     .catch(err => {
       console.log(err);
@@ -158,13 +146,29 @@ app.get('/blogs/:id', (req, res) => {
 });
 //retrieves all blogs
 app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
-  Blog.find().sort({ createdAt: -1 })
+    logged_in = 0;     
+    Blog.find().sort({ createdAt: -1 })
     .then(result => {
       res.render('index', { blogs: result, title: 'All blogs' });
     })
     .catch(err => {
       console.log(err);
     });
+});
+//checks if logged in value is true
+app.get("/delete", (req, res) => {
+    if(logged_in ==1){
+        res.render("delete",{title:"Delete"});}
+    else{
+        res.redirect("/blogs")
+    }
+});
+app.get("/create", (req, res) => {
+    if(logged_in ==1){
+        res.render("create",{title:"Create!"});}
+    else{
+        res.redirect("/blogs")
+    }
 });
 
 
