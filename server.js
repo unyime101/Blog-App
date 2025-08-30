@@ -158,10 +158,15 @@ app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
 //checks if logged in value is true
 app.get("/delete", (req, res) => {
     if(logged_in ==1){
-        res.render("delete",{title:"Delete"});}
+        Blog.find().sort({ createdAt: -1 })
+        .then(result => {
+            res.render('delete', { blogs: result, title: 'All blogs' });
+         })
+        .catch(err => {
+            console.log(err);
+        });}
     else{
-        res.redirect("/blogs")
-    }
+        res.redirect("/blogs")};
 });
 app.get("/create", (req, res) => {
     if(logged_in ==1){
@@ -170,6 +175,18 @@ app.get("/create", (req, res) => {
         res.redirect("/blogs")
     }
 });
+app.delete('/delete/:id', (req, res) => {
+  const id = req.params.id;
+  
+  Blog.findByIdAndDelete(id)
+    .then(result => {
+      res.render("delete",{title:"Delete!"});
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 
 
 // 404 page
