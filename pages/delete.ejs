@@ -2,25 +2,27 @@
 <%- include("./partials/head.ejs") %>
 
 <body>
-  <%- include("./partials/nav.ejs") %>
+  <%- include("./partials/nav2.ejs") %>
 
-  <div class="delete content">
-    <h2>All Logs</h2>
-
-    <% if (blogs.length > 0) { %>
-        <% blogs.forEach(function(blog) { %>
-            <a class="single" href="/blogs/<%= blog._id %>">
-                <h3 class="title"><%= blog.title %></h3>
-                <p class="snippet"><%= blog.snippet %></p>
-            </a>
-        <% }) %>
-    <% } 
-    
-    else { %>
-    <p>There are no blogs to display...</p>
-    <% } %>
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= blog._id %>">Delete</a>
   </div>
 
   <%- include("./partials/footer.ejs") %>
+<script>
+const delBlog = document.querySelector('a.delete');
+delBlog.addEventListener('click', (e) => {
+  const endpoint = `/blogs/${delBlog.dataset.doc}`;
+  fetch(endpoint, {
+    method: 'DELETE',})
+    .then(response => response.json())
+    .then(data => window.location.href = data.redirect)
+    .catch(err => console.log(err));
+  });
+  </script>
 </body>
 </html>
