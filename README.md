@@ -35,7 +35,7 @@ This app is designed to deepen my understanding of:
 | Comment route (public)       | 🚧 In Progress| Users can comment without logging in              |
 | Static HTML/CSS UI           | ✅Completed   | Clean responsive design, no frameworks            |
 | Azure deployment             | 🔜 Planned    | Hosting with GitHub Actions + App Service         |
-| k3s Raspberry Pi deployment  | 🔜 Planned    | Will self-host on Pi 5 cluster                    |
+| k3s Raspberry Pi deployment  | 🚧 In Progress| Will self-host on Pi 5 cluster                    |
 | Authentication (admin-only)  | ✅Completed   | Simple admin login to protect CRUD routes         |
 | UI improvements              | 🔜 Planned    | Dark mode, better layout, form validation         |
 
