@@ -136,33 +136,68 @@ app.post('/blogs', (req, res) => {
 //displaying each blog
 app.get('/blogs/:id', (req, res) => {
   const id = req.params.id;
-  Blog.findById(id)
-    .then(result => {
-      res.render('details', { blog: result, title: 'Blog Details' });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+
+  if (logged_in == 1) {
+    console.log("Delete details page");
+    Blog.findById(id)
+      .then(result => {
+        //console.log("Result for delete page:", result);
+        res.render('delete', { blog: result, title: 'Blog Details!!' });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } else {
+    console.log("Blog details page")
+    Blog.findById(id)
+      .then(result => {
+        res.render('details', { blog: result, title: 'Blog Details' });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+});
+// logout route
+app.get('/logout', (req, res) => {
+  logged_in = 0; // revoke admin privileges
+  res.redirect('/blogs'); 
 });
 //retrieves all blogs
-app.get('/blogs', (req, res) => { //sorts the blogs in order of creation
-    logged_in = 0;     
+app.get('/blogs', (req, res) => { //sorts the blogs in order of creation;     
+  if(logged_in==1){
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
-      res.render('index', { blogs: result, title: 'All blogs' });
+      res.render('adindex', { blogs: result, title: 'All my blogs' });
     })
     .catch(err => {
       console.log(err);
+    });}
+    else{
+      Blog.find().sort({ createdAt: -1 })
+      .then(result => {
+        res.render('index', { blogs: result, title: 'All blogs' });
+      })
+    .catch(err => {
+      console.log(err);
     });
+    }  
+  
 });
 //checks if logged in value is true
 app.get("/delete", (req, res) => {
     if(logged_in ==1){
-        res.render("delete",{title:"Delete"});}
+        Blog.find().sort({ createdAt: -1 })
+        .then(result => {
+            res.render('delete', { blogs: result, title: 'All blogs!!' });
+         })
+        .catch(err => {
+            console.log(err);
+        });}
     else{
-        res.redirect("/blogs")
-    }
-});
+        res.redirect("/blogs")};
+ });
 app.get("/create", (req, res) => {
     if(logged_in ==1){
         res.render("create",{title:"Create!"});}
@@ -170,6 +205,19 @@ app.get("/create", (req, res) => {
         res.redirect("/blogs")
     }
 });
+
+app.delete('/blogs/:id', (req, res) => {
+  const id = req.params.id;
+  
+  Blog.findByIdAndDelete(id)
+    .then(result => {
+      res.json({ redirect: '/blogs' });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 
 
 // 404 page

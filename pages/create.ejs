@@ -8,16 +8,16 @@
       <form action="/blogs" method="POST">
         <label for="title">Blog title:</label>
         <input type="text" id="title" name="title" required>
-        <label for="snippet">Blog snippet:</label>
+        <label for="snippet">Snippet:</label>
         <input type="text" id="snippet" name="snippet" required>
-        <label for="body">Blog body:</label>
+        <label for="body">Body:</label>
         <textarea id="body" name="body" required></textarea>
         <div class="form-buttons">
           <button type="submit">Submit</button>
         </div>
       </form>
 
-      <form action="/delete" method="GET">
+      <form action="/blogs" method="GET">
         <button type="submit" class="btn-red">Delete Post.</button>
       </form>
     </div>
