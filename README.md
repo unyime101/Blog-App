@@ -39,7 +39,6 @@ This app is designed to deepen my understanding of:
 | Authentication (admin-only)  | ✅Completed   | Simple admin login to protect CRUD routes         |
 | UI improvements              | 🔜 Planned    | Dark mode, better layout, form validation         |
 
-----
 
 ## 📦 Features
 
